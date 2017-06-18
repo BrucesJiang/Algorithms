@@ -48,21 +48,23 @@ package util.api;
  ******************************************************************************/
 
 /**
- * User： Bruce Jiang
+ * User: Bruce Jiang
  * Date: 2017/6/17 20:16
- * Description:/**
- *  <i>Standard array IO</i>. This class provides methods for reading
- *  in 1D and 2D arrays from standard input and printing out to
- *  standard output.
- *  <p>
- *  For additional documentation, see
- *  <a href="http://introcs.cs.princeton.edu/22libary">Section 2.2</a> of
- *  <i>Computer Science: An Interdisciplinary Approach</i>
- *  by Robert Sedgewick and Kevin Wayne.
+ * Description:
+ *
+ * <i>Standard array IO</i>. This class provides methods for reading
+ * in 1D and 2D arrays from standard input and printing out to
+ * standard output.
+ * <p>
+ * For additional documentation, see
+ * <a href="http://introcs.cs.princeton.edu/22libary">Section 2.2</a> of
+ * <i>Computer Science: An Interdisciplinary Approach</i>
+ * by Robert Sedgewick and Kevin Wayne.
  */
 public final class StdArrayIO {
     // it doesn't make sense to instantiate this class
-    private StdArrayIO() { }
+    private StdArrayIO() {
+    }
 
     /**
      * Reads a 1D array of doubles from standard input and returns it.
@@ -216,7 +218,7 @@ public final class StdArrayIO {
         StdOut.println(n);
         for (int i = 0; i < n; i++) {
             if (a[i]) StdOut.print("1 ");
-            else      StdOut.print("0 ");
+            else StdOut.print("0 ");
         }
         StdOut.println();
     }
@@ -250,7 +252,7 @@ public final class StdArrayIO {
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (a[i][j]) StdOut.print("1 ");
-                else         StdOut.print("0 ");
+                else StdOut.print("0 ");
             }
             StdOut.println();
         }

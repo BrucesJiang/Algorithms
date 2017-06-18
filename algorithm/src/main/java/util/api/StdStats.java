@@ -33,103 +33,107 @@ package util.api;
  ******************************************************************************/
 
 /**
- * User： Bruce Jiang
+ * User: Bruce Jiang
  * Date: 2017/6/14 10:37
  * Description:
- *    数据分析静态方法库API
+ * compute statistics
  */
 public final class StdStats {
     //don't instantiate
-    private StdStats(){}
+    private StdStats() {
+    }
 
     /**
-     * 返回最大值
      * Returns the maximum value in the specified array
-     * @param a  the array
+     *
+     * @param a the array
      * @return the maximum value in the array {@code a[]} . {@code Double.NEGATIVE_INFINITY} if no such value
      */
-    public static double max(double[] a){
+    public static double max(double[] a) {
         validateNotNull(a);
         double max = Double.NEGATIVE_INFINITY;
-        for(int i = 0; i < a.length; i ++){
-            if(Double.isNaN(a[i])) return Double.NaN; // 不是一个Double类型
-            if(a[i] > max) max = a[i];
+        for (int i = 0; i < a.length; i++) {
+            if (Double.isNaN(a[i])) return Double.NaN; // not a double type
+            if (a[i] > max) max = a[i];
         }
         return max;
     }
 
     /**
      * Returns the maximum value in the specified subarray
-     * @param a the array
+     *
+     * @param a  the array
      * @param lo the left endpoint of the subarray(inclusive)
      * @param hi the right endpoint of the subarray(inclusive)
-     * @return the maximum value in the subarray {@code a[lo, hi]}. {@coee Double.NEGATIVE_INFINITY} if no such value
+     * @return the maximum value in the subarray {@code a[lo, hi]}. {@code Double.NEGATIVE_INFINITY} if no such value
      */
-    public static double max(double a[], int lo, int hi){
+    public static double max(double a[], int lo, int hi) {
         validateSubarrayIndices(lo, hi, a.length);
 
         double max = Double.NEGATIVE_INFINITY;
 
-        for(int i = lo; i <= hi; i ++){
-            if(Double.isNaN(a[i])) return Double.NaN;
-            if(a[i] > max) max = a[i];
+        for (int i = lo; i <= hi; i++) {
+            if (Double.isNaN(a[i])) return Double.NaN;
+            if (a[i] > max) max = a[i];
         }
         return max;
     }
 
     /**
      * Return the maximum value in the specified subarray
+     *
      * @param a the array
      * @return the maximum value in the array {@code a[]}
-     *             {@code Integer.MIN_VALUE} if no such value
+     * {@code Integer.MIN_VALUE} if no such value
      */
-    public static int max(int[] a){
+    public static int max(int[] a) {
         validateNotNull(a);
 
         int max = Integer.MIN_VALUE;
 
-        for(int i = 0; i < a.length; i ++){
-            if(a[i] > max) max = a[i];
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] > max) max = a[i];
         }
         return max;
     }
 
     /**
      * Returns the maximum in the specified subarray
-     * @param a the array
+     *
+     * @param a  the array
      * @param lo the left endpoint of the subarray(inclusive)
      * @param hi the right endpoint of the subarray(inclusive)
      * @return the maximum value in the subarray {@code a[lo, hi]}
-     *          {@code Integer.MIN_VALUE} if no such value
+     * {@code Integer.MIN_VALUE} if no such value
      */
-    public static int max(int[] a, int lo, int hi){
+    public static int max(int[] a, int lo, int hi) {
         validateNotNull(a);
         validateSubarrayIndices(lo, hi, a.length);
 
         int max = Integer.MIN_VALUE;
 
-        for(int i = lo; i <= hi; i ++ ){
-            if(a[i] < max) max = a[i];
+        for (int i = lo; i <= hi; i++) {
+            if (a[i] < max) max = a[i];
         }
         return max;
     }
 
 
     /**
-     * 返回最小值
      * Returns the minimum value in the specified array
+     *
      * @param a the array
      * @return the minimum value in the array {@code a[]} .
-     *  {@code Double.POSITIVE_INFINITY} if no such value
+     * {@code Double.POSITIVE_INFINITY} if no such value
      */
-    public static double min(double[] a){
+    public static double min(double[] a) {
         validateNotNull(a);
 
         double min = Double.POSITIVE_INFINITY;
 
-        for(int i = 0; i < a.length; i ++){
-            if(Double.isNaN(a[i])) return Double.NaN;
-            if(a[i] < min) min = a[i];
+        for (int i = 0; i < a.length; i++) {
+            if (Double.isNaN(a[i])) return Double.NaN;
+            if (a[i] < min) min = a[i];
 
         }
         return min;
@@ -137,86 +141,88 @@ public final class StdStats {
 
     /**
      * Returns the minimum value in the specified array
-     * @param a the array
+     *
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the minimum value in the subarray {@code a[lo, hi]}
-     *      {@code Double.POSITIVE_INFINITY} if no such value
+     * {@code Double.POSITIVE_INFINITY} if no such value
      */
-    public static double min(double[] a, int lo, int hi){
+    public static double min(double[] a, int lo, int hi) {
         validateNotNull(a);
         validateSubarrayIndices(lo, hi, a.length);
 
         double min = Double.POSITIVE_INFINITY;
 
-        for(int i = lo; i <= hi; i ++){
-            if(Double.isNaN(a[i])) return Double.NaN;
-            if(a[i] < min) min = a[i];
+        for (int i = lo; i <= hi; i++) {
+            if (Double.isNaN(a[i])) return Double.NaN;
+            if (a[i] < min) min = a[i];
         }
         return min;
     }
 
     /**
-     * 返回最小值
      * Returns the minimum value in the specified array
+     *
      * @param a the array
      * @return the minimum value in the array {@code a[]} .
-     *  {@code Integer.MAX_VALUE} if no such value
+     * {@code Integer.MAX_VALUE} if no such value
      */
-    public static int min(int[] a){
+    public static int min(int[] a) {
         validateNotNull(a);
 
         int min = Integer.MAX_VALUE;
 
-        for(int i = 0; i < a.length; i ++){
-            if(a[i] < min) min = a[i];
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < min) min = a[i];
         }
         return min;
     }
 
     /**
      * Returns the minimum value in the specified array
-     * @param a the array
+     *
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the minimum value in the subarray {@code a[lo, hi]}
-     *      {@code Integer.MAX_VALUE} if no such value
+     * {@code Integer.MAX_VALUE} if no such value
      */
-    public static int min(int[] a, int lo, int hi){
+    public static int min(int[] a, int lo, int hi) {
         validateNotNull(a);
         validateSubarrayIndices(lo, hi, a.length);
 
         int min = Integer.MAX_VALUE;
 
-        for(int i = lo; i <= hi; i ++){
-            if(a[i] < min) min = a[i];
+        for (int i = lo; i <= hi; i++) {
+            if (a[i] < min) min = a[i];
         }
         return min;
     }
 
     /**
      * Returns the average value in the specified array.
-     * 平均值
+     *
      * @param a the array
      * @return the average value in the array {@code a[]};
-     *      {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
-    public static double mean(double[] a){
+    public static double mean(double[] a) {
         validateNotNull(a);
 
-        if(a.length == 0) return Double.NaN;
+        if (a.length == 0) return Double.NaN;
         double sum = sum(a);
-        return sum/a.length;
+        return sum / a.length;
     }
 
     /**
      * Returns the average value in the specified subarray.
      *
-     * @param a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the average value in the subarray {@code a[lo..hi]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double mean(double[] a, int lo, int hi) {
         validateNotNull(a);
@@ -232,9 +238,9 @@ public final class StdStats {
     /**
      * Returns the average value in the specified array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the average value in the array {@code a[]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double mean(int[] a) {
         validateNotNull(a);
@@ -247,9 +253,10 @@ public final class StdStats {
     /**
      * Returns the sample variance in the specified array.
      * 采样方差
-     * @param  a the array
+     *
+     * @param a the array
      * @return the sample variance in the array {@code a[]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double var(double[] a) {
         validateNotNull(a);
@@ -266,11 +273,11 @@ public final class StdStats {
     /**
      * Returns the sample variance in the specified subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the sample variance in the subarray {@code a[lo..hi]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double var(double[] a, int lo, int hi) {
         validateNotNull(a);
@@ -290,9 +297,9 @@ public final class StdStats {
     /**
      * Returns the sample variance in the specified array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sample variance in the array {@code a[]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double var(int[] a) {
         validateNotNull(a);
@@ -308,9 +315,9 @@ public final class StdStats {
     /**
      * Returns the population variance in the specified array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the population variance in the array {@code a[]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double varp(double[] a) {
         validateNotNull(a);
@@ -326,11 +333,11 @@ public final class StdStats {
     /**
      * Returns the population variance in the specified subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the population variance in the subarray {@code a[lo..hi]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double varp(double[] a, int lo, int hi) {
         validateNotNull(a);
@@ -349,10 +356,10 @@ public final class StdStats {
 
     /**
      * Returns the sample standard deviation in the specified array.
-     * 采样标准差
-     * @param  a the array
+     *
+     * @param a the array
      * @return the sample standard deviation in the array {@code a[]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double stddev(double[] a) {
         validateNotNull(a);
@@ -362,9 +369,9 @@ public final class StdStats {
     /**
      * Returns the sample standard deviation in the specified array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sample standard deviation in the array {@code a[]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double stddev(int[] a) {
         validateNotNull(a);
@@ -374,11 +381,11 @@ public final class StdStats {
     /**
      * Returns the sample standard deviation in the specified subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the sample standard deviation in the subarray {@code a[lo..hi]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double stddev(double[] a, int lo, int hi) {
         validateNotNull(a);
@@ -391,9 +398,9 @@ public final class StdStats {
     /**
      * Returns the population standard deviation in the specified array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the population standard deviation in the array;
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double stddevp(double[] a) {
         validateNotNull(a);
@@ -403,11 +410,11 @@ public final class StdStats {
     /**
      * Returns the population standard deviation in the specified subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the population standard deviation in the subarray {@code a[lo..hi]};
-     *         {@code Double.NaN} if no such value
+     * {@code Double.NaN} if no such value
      */
     public static double stddevp(double[] a, int lo, int hi) {
         validateNotNull(a);
@@ -419,9 +426,9 @@ public final class StdStats {
     /**
      * Returns the sum of all values in the specified array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sum of all values in the array {@code a[]};
-     *         {@code 0.0} if no such value
+     * {@code 0.0} if no such value
      */
     private static double sum(double[] a) {
         validateNotNull(a);
@@ -435,11 +442,11 @@ public final class StdStats {
     /**
      * Returns the sum of all values in the specified subarray.
      *
-     * @param  a the array
+     * @param a  the array
      * @param lo the left endpoint of the subarray (inclusive)
      * @param hi the right endpoint of the subarray (inclusive)
      * @return the sum of all values in the subarray {@code a[lo..hi]};
-     *         {@code 0.0} if no such value
+     * {@code 0.0} if no such value
      */
     private static double sum(double[] a, int lo, int hi) {
         validateNotNull(a);
@@ -455,9 +462,9 @@ public final class StdStats {
     /**
      * Returns the sum of all values in the specified array.
      *
-     * @param  a the array
+     * @param a the array
      * @return the sum of all values in the array {@code a[]};
-     *         {@code 0.0} if no such value
+     * {@code 0.0} if no such value
      */
     private static int sum(int[] a) {
         validateNotNull(a);
@@ -470,7 +477,7 @@ public final class StdStats {
 
     /**
      * Plots the points (0, <em>a</em><sub>0</sub>), (1, <em>a</em><sub>1</sub>), ...,
-     * (<em>n</em>–1, <em>a</em><sub><em>n</em>–1</sub>) to standard draw.
+     * (<em>n</em>-1, <em>a</em><sub><em>n</em>-1</sub>) to standard draw.
      *
      * @param a the array of values
      */
@@ -498,7 +505,7 @@ public final class StdStats {
         StdDraw.setXscale(-1, n);
         StdDraw.setPenRadius();
         for (int i = 1; i < n; i++) {
-            StdDraw.line(i-1, a[i-1], i, a[i]);
+            StdDraw.line(i - 1, a[i - 1], i, a[i]);
         }
     }
 
@@ -514,16 +521,16 @@ public final class StdStats {
         int n = a.length;
         StdDraw.setXscale(-1, n);
         for (int i = 0; i < n; i++) {
-            StdDraw.filledRectangle(i, a[i]/2, 0.25, a[i]/2);
+            StdDraw.filledRectangle(i, a[i] / 2, 0.25, a[i] / 2);
         }
     }
 
     /**
-     * 中位数
-     * @param a
-     * @return
+     *
+     * @param a the array
+     * @return the median number of the arrray
      */
-    public double median(double[] a){
+    public double median(double[] a) {
         //TODO
         return 0;
     }
@@ -531,17 +538,19 @@ public final class StdStats {
 
     /**
      * Validate Object x is not null, if it is , throw IllegalArgumentException
+     *
      * @param x Object
      * @throws IllegalArgumentException if {@code x} is null
      */
-    private static void validateNotNull(Object x){
-        if(x == null){
+    private static void validateNotNull(Object x) {
+        if (x == null) {
             throw new IllegalArgumentException("Argument is NULL");
         }
     }
+
     // throw IndexOutOfBoundsException
-    private static void validateSubarrayIndices(int lo, int hi, int length){
-        if(lo < 0 || hi >= length || lo > hi){
+    private static void validateSubarrayIndices(int lo, int hi, int length) {
+        if (lo < 0 || hi >= length || lo > hi) {
             throw new IndexOutOfBoundsException("Subarray indices out of bounds");
         }
     }

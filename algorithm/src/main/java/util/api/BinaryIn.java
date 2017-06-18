@@ -17,9 +17,10 @@ import java.net.URLConnection;
 import java.util.NoSuchElementException;
 
 /**
- * User： Bruce Jiang
+ * User: Bruce Jiang
  * Date: 2017/6/17 10:27
  * Description:
+ *  Read bits from files and URLs
  */
 public final class BinaryIn {
     private static final int EOF = -1;   // end of file
@@ -56,8 +57,7 @@ public final class BinaryIn {
             InputStream is = socket.getInputStream();
             in = new BufferedInputStream(is);
             fillBuffer();
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             System.err.println("Could not open " + socket);
         }
     }
@@ -70,11 +70,10 @@ public final class BinaryIn {
     public BinaryIn(URL url) {
         try {
             URLConnection site = url.openConnection();
-            InputStream is     = site.getInputStream();
+            InputStream is = site.getInputStream();
             in = new BufferedInputStream(is);
             fillBuffer();
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             System.err.println("Could not open " + url);
         }
     }
@@ -105,11 +104,10 @@ public final class BinaryIn {
             }
 
             URLConnection site = url.openConnection();
-            InputStream is     = site.getInputStream();
+            InputStream is = site.getInputStream();
             in = new BufferedInputStream(is);
             fillBuffer();
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             System.err.println("Could not open " + name);
         }
     }
@@ -118,8 +116,7 @@ public final class BinaryIn {
         try {
             buffer = in.read();
             n = 8;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("EOF");
             buffer = EOF;
             n = -1;
@@ -130,9 +127,9 @@ public final class BinaryIn {
      * Returns true if this binary input stream exists.
      *
      * @return {@code true} if this binary input stream exists;
-     *         {@code false} otherwise
+     * {@code false} otherwise
      */
-    public boolean exists()  {
+    public boolean exists() {
         return in != null;
     }
 
@@ -140,7 +137,7 @@ public final class BinaryIn {
      * Returns true if this binary input stream is empty.
      *
      * @return {@code true} if this binary input stream is empty;
-     *         {@code false} otherwise
+     * {@code false} otherwise
      */
     public boolean isEmpty() {
         return buffer == EOF;
@@ -193,9 +190,9 @@ public final class BinaryIn {
     /**
      * Reads the next r bits from this binary input stream and return as an r-bit character.
      *
-     * @param  r number of bits to read
+     * @param r number of bits to read
      * @return the next {@code r} bits of data from this binary input streamt as a {@code char}
-     * @throws NoSuchElementException if there are fewer than {@code r} bits available
+     * @throws NoSuchElementException   if there are fewer than {@code r} bits available
      * @throws IllegalArgumentException unless {@code 1 <= r <= 16}
      */
     public char readChar(int r) {
@@ -219,7 +216,7 @@ public final class BinaryIn {
      *
      * @return the remaining bytes of data from this binary input stream as a {@code String}
      * @throws NoSuchElementException if this binary input stream is empty or if the number of bits
-     *         available is not a multiple of 8 (byte-aligned)
+     *                                available is not a multiple of 8 (byte-aligned)
      */
     public String readString() {
         if (isEmpty()) throw new NoSuchElementException("Reading from empty input stream");
@@ -268,9 +265,9 @@ public final class BinaryIn {
     /**
      * Reads the next r bits from this binary input stream return as an r-bit int.
      *
-     * @param  r number of bits to read
+     * @param r number of bits to read
      * @return the next {@code r} bits of data from this binary input stream as a {@code int}
-     * @throws NoSuchElementException if there are fewer than r bits available
+     * @throws NoSuchElementException   if there are fewer than r bits available
      * @throws IllegalArgumentException unless {@code 1 <= r <= 32}
      */
     public int readInt(int r) {
@@ -344,7 +341,7 @@ public final class BinaryIn {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        BinaryIn  in  = new BinaryIn(args[0]);
+        BinaryIn in = new BinaryIn(args[0]);
         BinaryOut out = new BinaryOut(args[1]);
 
         // read one 8-bit char at a time

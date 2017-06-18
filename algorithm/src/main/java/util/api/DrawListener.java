@@ -6,8 +6,9 @@ package util.api;
  *
  *  Interface that accompanies Draw.java.
  ******************************************************************************/
+
 /**
- * User： Bruce Jiang
+ * User: Bruce Jiang
  * Date: 2017/6/17 21:12
  * Description:
  */

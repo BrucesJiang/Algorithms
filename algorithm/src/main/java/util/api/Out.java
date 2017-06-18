@@ -13,11 +13,11 @@ import java.net.Socket;
 import java.util.Locale;
 
 /**
- * User： Bruce Jiang
+ * User: Bruce Jiang
  * Date: 2017/6/17 10:13
  * Description:
- *  This class provides methods for writing strings and numbers to
- *  various output streams, including standard output, file, and sockets.
+ * This class provides methods for writing strings and numbers to
+ * various output streams, including standard output, file, and sockets.
  */
 public final class Out {
 
@@ -32,33 +32,33 @@ public final class Out {
 
     /**
      * Initializes an output stream from a {@link OutputStream}
-     * @param os  the {@code  OutputStream}
+     *
+     * @param os the {@code  OutputStream}
      */
-    public Out(OutputStream os){
-        try{
+    public Out(OutputStream os) {
+        try {
             OutputStreamWriter osw = new OutputStreamWriter(os, CHARSET);
             out = new PrintWriter(osw, true);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public Out(){
+    public Out() {
         this(System.out);
     }
 
     /**
      * Initializes an output stream from a socket.
      *
-     * @param  socket the socket
+     * @param socket the socket
      */
     public Out(Socket socket) {
         try {
             OutputStream os = socket.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, CHARSET);
             out = new PrintWriter(osw, true);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -66,15 +66,14 @@ public final class Out {
     /**
      * Initializes an output stream from a file.
      *
-     * @param  filename the name of the file
+     * @param filename the name of the file
      */
     public Out(String filename) {
         try {
             OutputStream os = new FileOutputStream(filename);
             OutputStreamWriter osw = new OutputStreamWriter(os, CHARSET);
             out = new PrintWriter(osw, true);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -166,7 +165,6 @@ public final class Out {
     public void println(byte x) {
         out.println(x);
     }
-
 
 
     /**

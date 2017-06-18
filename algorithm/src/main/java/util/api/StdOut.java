@@ -14,10 +14,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 
 /**
- * User： Bruce Jiang
+ * User: Bruce Jiang
  * Date: 2017/6/17 10:21
  * Description:
- *  This class provides methods for printing strings and numbers to standard output.
+ * This class provides methods for printing strings and numbers to standard output.
  */
 public class StdOut {
     // force Unicode UTF-8 encoding; otherwise it's system dependent
@@ -33,14 +33,14 @@ public class StdOut {
     static {
         try {
             out = new PrintWriter(new OutputStreamWriter(System.out, CHARSET_NAME), true);
-        }
-        catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             System.out.println(e);
         }
     }
 
     // don't instantiate
-    private StdOut() { }
+    private StdOut() {
+    }
 
     /**
      * Closes standard output.
@@ -240,7 +240,6 @@ public class StdOut {
      * Prints a formatted string to standard output, using the specified format
      * string and arguments, and then flushes standard output.
      *
-     *
      * @param format the <a href = "http://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax">format string</a>
      * @param args   the arguments accompanying the format string
      */
@@ -273,6 +272,6 @@ public class StdOut {
         StdOut.println("Test");
         StdOut.println(17);
         StdOut.println(true);
-        StdOut.printf("%.6f\n", 1.0/7.0);
+        StdOut.printf("%.6f\n", 1.0 / 7.0);
     }
 }
