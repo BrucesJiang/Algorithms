@@ -16,10 +16,22 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 
 /**
- * User：Bruce Jiang
- * Date: 2017/6/17 10:29
- * Description:
- * Reading binary data from standard input .
+ *  <i>Binary standard input</i>. This class provides methods for reading
+ *  in bits from standard input, either one bit at a time (as a {@code boolean}),
+ *  8 bits at a time (as a {@code byte} or {@code char}),
+ *  16 bits at a time (as a {@code short}), 32 bits at a time
+ *  (as an {@code int} or {@code float}), or 64 bits at a time (as a
+ *  {@code double} or {@code long}).
+ *  <p>
+ *  All primitive types are assumed to be represented using their
+ *  standard Java representations, in big-endian (most significant
+ *  byte first) order.
+ *  <p>
+ *  The client should not intermix calls to {@code BinaryStdIn} with calls
+ *  to {@code StdIn} or {@code System.in};
+ *  otherwise unexpected behavior will result.
+ *
+ * @author Bruce Jiang
  */
 public final class BinaryStdIn {
     // Buffer input stream from standard input

@@ -21,11 +21,10 @@ import java.util.Random;
  * - See http://www.honeylocust.com/RngPack/ for an industrial
  * strength random number generator in Java.
  * <p>
- * User: Bruce Jiang
- * Date: 2017/6/14 10:26
- * Description: generate random numbers
  *
  * @see <a href="http://introcs.cs.princeton.edu/java/stdlib/StdRandom.java.html"></a>
+ *
+ * @author Bruce Jiang
  */
 
 public final class StdRandom {

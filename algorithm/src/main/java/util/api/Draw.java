@@ -41,17 +41,14 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 /**
- * User: Bruce Jiang
- *
- * Date: 2017/6/17 20:08
- *
- * Description:
  * <i>Draw</i>. This class provides a basic capability for
  * creating drawings with your programs. It uses a simple graphics model that
  * allows you to create drawings consisting of points, lines, and curves
  * in a window on your computer and to save the drawings to a file.
  * This is the object-oriented version of standard draw; it supports
  * multiple indepedent drawing windows.
+ *
+ * @author Bruce Jiang
  */
 public final class Draw implements ActionListener, MouseMotionListener, KeyListener, MouseListener {
 

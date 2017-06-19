@@ -467,8 +467,8 @@ import javax.swing.KeyStroke;
  * <em>Computer Science: An Interdisciplinary Approach</em>
  * by Robert Sedgewick and Kevin Wayne.
  * <p>
- * User: Bruce Jiang
- * Date: 2017/6/17 20:14
+ *
+ * @author  Bruce Jiang
  */
 public final class StdDraw implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 

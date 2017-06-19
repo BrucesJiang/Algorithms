@@ -48,10 +48,6 @@ package util.api;
  ******************************************************************************/
 
 /**
- * User: Bruce Jiang
- * Date: 2017/6/17 20:16
- * Description:
- *
  * <i>Standard array IO</i>. This class provides methods for reading
  * in 1D and 2D arrays from standard input and printing out to
  * standard output.
@@ -60,6 +56,8 @@ package util.api;
  * <a href="http://introcs.cs.princeton.edu/22libary">Section 2.2</a> of
  * <i>Computer Science: An Interdisciplinary Approach</i>
  * by Robert Sedgewick and Kevin Wayne.
+ *
+ * @author  Bruce Jiang
  */
 public final class StdArrayIO {
     // it doesn't make sense to instantiate this class

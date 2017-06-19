@@ -14,11 +14,20 @@ package util.api;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
-
 /**
- * User: Bruce Jiang
- * Date: 2017/6/17 10:24
- * Description:
+ *  <i>Binary standard output</i>. This class provides methods for converting
+ *  primtive type variables ({@code boolean}, {@code byte}, {@code char},
+ *  {@code int}, {@code long}, {@code float}, and {@code double})
+ *  to sequences of bits and writing them to standard output.
+ *  Uses big-endian (most-significant byte first).
+ *  <p>
+ *  The client must {@code flush()} the output stream when finished writing bits.
+ *  <p>
+ *  The client should not intermixing calls to {@code BinaryStdOut} with calls
+ *  to {@code StdOut} or {@code System.out}; otherwise unexpected behavior
+ *  will result.
+ *
+ * @author  Bruce Jiang
  */
 public final class BinaryStdOut {
     private static BufferedOutputStream out = new BufferedOutputStream(System.out);

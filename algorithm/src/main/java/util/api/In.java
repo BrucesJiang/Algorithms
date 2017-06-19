@@ -3,20 +3,48 @@
  */
 package util.api;
 
-import jdk.internal.util.xml.impl.Input;
 
+
+/******************************************************************************
+ *  Compilation:  javac In.java
+ *  Execution:    java In   (basic test --- see source for required files)
+ *  Dependencies: none
+ *
+ *  Reads in data of various types from standard input, files, and URLs.
+ *
+ ******************************************************************************/
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 import java.util.regex.Pattern;
-
 /**
- * User: Bruce Jiang
- * Date: 2017/6/14 14:57
- * Description:
+ *  <i>Input</i>. This class provides methods for reading strings
+ *  and numbers from standard input, file input, URLs, and sockets.
+ *  <p>
+ *  The Locale used is: language = English, country = US. This is consistent
+ *  with the formatting conventions with Java floating-point literals,
+ *  command-line arguments (via {@link Double#parseDouble(String)})
+ *  and standard output.
+ *  <p>
+ *  For additional documentation, see
+ *  <a href="http://introcs.cs.princeton.edu/31datatype">Section 3.1</a> of
+ *  <i>Computer Science: An Interdisciplinary Approach</i>
+ *  by Robert Sedgewick and Kevin Wayne.
+ *  <p>
+ *  Like {@link Scanner}, reading a token also consumes preceding Java
+ *  whitespace, reading a full line consumes
+ *  the following end-of-line delimeter, while reading a character consumes
+ *  nothing extra.
+ *  <p>
+ *  Whitespace is defined in {@link Character#isWhitespace(char)}. Newlines
+ *  consist of \n, \r, \r\n, and Unicode hex code points 0x2028, 0x2029, 0x0085;
+ *  see <a href="http://www.docjar.com/html/api/java/util/Scanner.java.html">
+ *  Scanner.java</a> (NB: Java 6u23 and earlier uses only \r, \r, \r\n).
+ *
+ * @author  Bruce Jiang
+ * @version  1.0
  *
  */
 public final class In {

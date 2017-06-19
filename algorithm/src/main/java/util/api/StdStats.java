@@ -33,10 +33,16 @@ package util.api;
  ******************************************************************************/
 
 /**
- * User: Bruce Jiang
- * Date: 2017/6/14 10:37
- * Description:
- * compute statistics
+ *  The {@code StdStats} class provides static methods for computing
+ *  statistics such as min, max, mean, sample standard deviation, and
+ *  sample variance.
+ *  <p>
+ *  For additional documentation, see
+ *  <a href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of
+ *  <i>Computer Science: An Interdisciplinary Approach</i>
+ *  by Robert Sedgewick and Kevin Wayne.
+ *
+ *  @author Bruce Jiang
  */
 public final class StdStats {
     //don't instantiate
@@ -252,7 +258,6 @@ public final class StdStats {
 
     /**
      * Returns the sample variance in the specified array.
-     * 采样方差
      *
      * @param a the array
      * @return the sample variance in the array {@code a[]};

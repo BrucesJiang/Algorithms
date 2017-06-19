@@ -19,11 +19,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-
 /**
- * User: Bruce Jiang
- * Date: 2017/6/17 10:25
- * Description:
+ *  <i>Binary output</i>. This class provides methods for converting
+ *  primtive type variables ({@code boolean}, {@code byte}, {@code char},
+ *  {@code int}, {@code long}, {@code float}, and {@code double})
+ *  to sequences of bits and writing them to an output stream.
+ *  The output stream can be standard output, a file, an OutputStream or a Socket.
+ *  Uses big-endian (most-significant byte first).
+ *  <p>
+ *  The client must {@code flush()} the output stream when finished writing bits.
+ *  <p>
+ *  The client should not intermixing calls to {@code BinaryOut} with calls
+ *  to {@code Out}; otherwise unexpected behavior will result.
+ *
+ *
+ * @author  Bruce Jiang
  */
 public final class BinaryOut {
     private BufferedOutputStream out;  // the output stream

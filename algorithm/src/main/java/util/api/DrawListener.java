@@ -8,9 +8,7 @@ package util.api;
  ******************************************************************************/
 
 /**
- * User: Bruce Jiang
- * Date: 2017/6/17 21:12
- * Description:
+ * @author Bruce Jiang
  */
 public interface DrawListener {
 

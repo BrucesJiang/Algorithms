@@ -16,11 +16,28 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.NoSuchElementException;
 
+
 /**
- * User: Bruce Jiang
- * Date: 2017/6/17 10:27
- * Description:
- *  Read bits from files and URLs
+ *  <i>Binary input</i>. This class provides methods for reading
+ *  in bits from a binary input stream, either
+ *  one bit at a time (as a {@code boolean}),
+ *  8 bits at a time (as a {@code byte} or {@code char}),
+ *  16 bits at a time (as a {@code short}),
+ *  32 bits at a time (as an {@code int} or {@code float}), or
+ *  64 bits at a time (as a {@code double} or {@code long}).
+ *  <p>
+ *  The binary input stream can be from standard input, a filename,
+ *  a URL name, a Socket, or an InputStream.
+ *  <p>
+ *  All primitive types are assumed to be represented using their
+ *  standard Java representations, in big-endian (most significant
+ *  byte first) order.
+ *  <p>
+ *  The client should not intermix calls to {@code BinaryIn} with calls
+ *  to {@code In}; otherwise unexpected behavior will result.
+ *
+ *
+ * @author Bruce Jiang
  */
 public final class BinaryIn {
     private static final int EOF = -1;   // end of file
