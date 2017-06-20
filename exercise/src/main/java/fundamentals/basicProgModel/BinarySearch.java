@@ -1,4 +1,4 @@
-package chapter_1_section_1;
+package fundamentals.basicProgModel;
 
 /**
  * User: Bruce Jiang
