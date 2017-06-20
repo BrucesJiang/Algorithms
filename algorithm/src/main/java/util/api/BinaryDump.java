@@ -1,6 +1,6 @@
 /****************************************************************
  *  Compilation:  javac BinaryDump.java
- *  Execution:    java BinaryDump N < file
+ *  Execution:    java BinaryDump N file
  *  Dependencies: BinaryStdIn.java
  *  Data File:    http://introcs.cs.princeton.edu/stdlib/abra.txt
  *
@@ -19,8 +19,10 @@ package util.api;
 public class BinaryDump {
     public static void main(String[] args){
         int BITS_PER_LINE = 16;
-        if(args.length == 1){
+        String fileName = "abra.txt";
+        if(args.length == 2){
             BITS_PER_LINE = Integer.parseInt(args[0]);
+            fileName = args[0];
         }
 
         int count;
