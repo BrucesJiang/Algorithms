@@ -15,8 +15,8 @@ import util.api.StdRandom;
  */
 public class Ex_1_1_31 {
     public static void drawRandomConn(int N, double p){
-        StdDraw.setCanvasSize(512,512);
-        StdDraw.setScale(-1.0, 1.0);
+        StdDraw.setCanvasSize(); //设置画布窗口大小
+        StdDraw.setScale(); //设置规模
         StdDraw.setPenRadius(.015);
         double[][] d = new double[N][2];
         for(int i = 0; i < N; i ++){
