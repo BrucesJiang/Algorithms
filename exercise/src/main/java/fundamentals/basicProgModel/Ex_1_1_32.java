@@ -18,7 +18,12 @@ package fundamentals.basicProgModel;
  *
  *************************************************/
 
+<<<<<<< HEAD
 import util.api.*;
+=======
+import util.api.StdDraw;
+import util.api.StdIn;
+>>>>>>> parent of 26aaff0... Practice Question
 
 /**
  * @auther Bruce Jiang
@@ -40,10 +45,15 @@ public class Ex_1_1_32 {
 
         int maxCounts = StdStats.max(count);
         StdDraw.setCanvasSize();
+<<<<<<< HEAD
         StdDraw.setXscale(l-10,r+10);
         StdDraw.setYscale(0, maxCounts + 10);
 
         double w = (r - l)/ N;
+=======
+        StdDraw.setScale();
+        StdDraw.setPenRadius(.015);
+>>>>>>> parent of 26aaff0... Practice Question
 
         for(int i = 0; i < count.length; i ++){
             double x = l + (i + 0.5)*w;
@@ -70,7 +80,11 @@ public class Ex_1_1_32 {
 
 
         double[] c = StdIn.readAllDoubles();
+<<<<<<< HEAD
         StdOut.print(c);
+=======
+
+>>>>>>> parent of 26aaff0... Practice Question
         drawHistogram(c, N, l, r);
     }
 }
