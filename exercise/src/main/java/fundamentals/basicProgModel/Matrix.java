@@ -116,5 +116,7 @@ public class Matrix {
         StdArrayIO.print(b);
         c = transpose(b);
         StdArrayIO.print(c);
+
+        //测试
     }
 }
