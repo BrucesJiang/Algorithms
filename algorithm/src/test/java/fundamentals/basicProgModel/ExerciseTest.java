@@ -1,6 +1,5 @@
 package fundamentals.basicProgModel;
 
-import fundamentals.basicProgModel.Exercise;
 import org.junit.Test;
 
 /**

@@ -7,7 +7,6 @@ package fundamentals.basicProgModel;
  *************************************************/
 
 import util.api.StdArrayIO;
-import util.api.StdOut;
 
 /**
  * @auther Bruce Jiang

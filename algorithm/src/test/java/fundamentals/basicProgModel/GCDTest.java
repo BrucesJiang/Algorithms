@@ -1,6 +1,5 @@
 package fundamentals.basicProgModel;
 
-import fundamentals.basicProgModel.GCD;
 import org.junit.Assert;
 import org.junit.Test;
 
