@@ -288,6 +288,7 @@ public final class StdIn {
             return "";
         }
         String result = scanner.useDelimiter(EVERYTHING_PATTERN).next();
+        StdOut.println(result);
         //not that important to reset delimeter, since now scanner is empty
         scanner.useDelimiter(WHITESPACE_PATTERN); // but let's do it anyway
         return result;
@@ -571,7 +572,7 @@ public final class StdIn {
 
     /**
      * Interactive test of basic functionality.
-     *
+     * You must Test in Console
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
@@ -581,6 +582,10 @@ public final class StdIn {
         System.out.println("Your string was: " + s);
         System.out.println();
 
+        String[] strs = StdIn.readAllStrings();
+        for (String str: strs) {
+            StdOut.println(str);
+        }
         System.out.print("Type an int: ");
         int a = StdIn.readInt();
         System.out.println("Your int was: " + a);
