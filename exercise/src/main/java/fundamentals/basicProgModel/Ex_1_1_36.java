@@ -23,18 +23,21 @@ public class Ex_1_1_36 {
 //            a[i] = tmp;
 //        }
 //    }
-    
+    //Proxy Pattern
+    interface Shuffle{
+        void shuffle(int[] a);
+    }
     public static void init(int[] a){
         for(int i = 0; i < a.length; i ++){
             a[i] = i;
         }
     }
-    public static void shuffleTest(int M, int N){
+    public static void shuffleTest(Shuffle sh, int M, int N){
         int[] a = new int[M];
         int[][] c = new int[M][M];
         for(int i = 0; i < N; i ++){
             init(a);
-            StdRandom.shuffle(a);
+            sh.shuffle(a);
             for(int j = 0; j < M; j ++){
                 c[j][a[j]]++;
             }
@@ -44,7 +47,11 @@ public class Ex_1_1_36 {
     public static void main(String[] args){
         int M  = Integer.parseInt(args[0]);
         int N = Integer.parseInt(args[1]);
-
-        shuffleTest(M,N);
+        Shuffle sh = new Shuffle() {
+            public void shuffle(int[] a) {
+                StdRandom.shuffle(a);
+            }
+        };
+        shuffleTest(sh,M,N);
     }
 }
