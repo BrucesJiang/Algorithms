@@ -149,7 +149,7 @@ public final class StdArrayIO {
      */
     public static void print(int[] a) {
         int n = a.length;
-        StdOut.println(n);
+        StdOut.println();
         for (int i = 0; i < n; i++) {
             StdOut.printf("%9d ", a[i]);
         }
