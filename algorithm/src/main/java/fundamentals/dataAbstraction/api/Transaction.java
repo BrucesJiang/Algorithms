@@ -4,6 +4,30 @@
  *  Dependencies: StdOut.java
  *
  *  Data type for commercial transactions
+ *
+ *  Unsorted
+ *  Turing      6/17/1990   644.08
+ *  Tarjan      3/26/2002  4121.85
+ *  Knuth       6/14/1999   288.34
+ *  Dijkstra    8/22/2007  2678.40
+ *
+ *  Sort by date
+ *  Turing      6/17/1990   644.08
+ *  Knuth       6/14/1999   288.34
+ *  Tarjan      3/26/2002  4121.85
+ *  Dijkstra    8/22/2007  2678.40
+ *
+ *  Sort by customer
+ *  Dijkstra    8/22/2007  2678.40
+ *  Knuth       6/14/1999   288.34
+ *  Tarjan      3/26/2002  4121.85
+ *  Turing      6/17/1990   644.08
+ *
+ *  Sort by amount
+ *  Knuth       6/14/1999   288.34
+ *  Turing      6/17/1990   644.08
+ *  Dijkstra    8/22/2007  2678.40
+ *  Tarjan      3/26/2002  4121.85
  ******************************************/
 
 package fundamentals.dataAbstraction.api;
