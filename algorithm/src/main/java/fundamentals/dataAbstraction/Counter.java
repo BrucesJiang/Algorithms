@@ -1,5 +1,7 @@
 package fundamentals.dataAbstraction;
 
+import util.api.StdOut;
+
 /**
  *  A Counter API
  *
@@ -7,19 +9,21 @@ package fundamentals.dataAbstraction;
  *
  */
 public class Counter {
+    private final String name;
+    private int count;
     /**
      * Constructor , the object named id
      * @param id  the counter's name
      */
     public Counter(String id){
-        //TODO
+        this.name = id;
     }
 
     /**
      *  the counter is incremented by one
      */
     public void increment(){
-        //TODO
+        count++;
     }
 
     /**
@@ -27,13 +31,23 @@ public class Counter {
      * @return the number of times
      */
     public int tally(){
-        //TODO
-        return -1;
+        return count;
     }
 
     @Override
     public String toString(){
-        //TODO
-        return null;
+        return count + " " + name;
+    }
+
+    public static void main(String[] args){
+        Counter heads = new Counter("heads");
+        Counter tails = new Counter("tails");
+
+        heads.increment();
+        heads.increment();
+        tails.increment();
+
+        StdOut.println(heads + " " + tails); //自动调用toString()方法
+        StdOut.println(heads.tally() + tails.tally());
     }
 }
