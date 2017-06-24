@@ -266,7 +266,6 @@ public final class Point2D implements Comparable<Point2D>{
 
     // compare points according to their y-coordinate
     private static class YOrder implements Comparator<Point2D>{
-
         @Override
         public int compare(Point2D o1, Point2D o2) {
             if(o1.y < o2.y) return -1;
