@@ -1,5 +1,6 @@
 package fundamentals.dataAbstraction;
 
+import fundamentals.dataAbstraction.api.Counter;
 import util.api.StdOut;
 import util.api.StdRandom;
 

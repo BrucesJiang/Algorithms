@@ -8,7 +8,6 @@
 
 package fundamentals.dataAbstraction.api;
 
-import fundamentals.dataAbstraction.Counter;
 import util.api.StdDraw;
 import util.api.StdOut;
 import util.api.StdRandom;
