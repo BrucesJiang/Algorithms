@@ -313,6 +313,14 @@ public final class Point2D implements Comparable<Point2D>{
     }
 
     /**
+     * Returns a string representation of the point
+     * @return a string representation of the point
+     */
+    public String toString(){
+        return "Point2D = [" + x + ", " + y + "]";
+    }
+
+    /**
      * Plot this point using standard draw.
      */
     public void draw(){

@@ -133,7 +133,7 @@ public class Interval2D {
             Point2D point = new Point2D(x, y);
 
             if (box.contains(point)) counter.increment();
-            else point.draw();
+            else                     point.draw();
         }
 
         StdOut.println(counter);
