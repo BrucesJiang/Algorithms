@@ -452,6 +452,8 @@ public final class In {
         return vals;
     }
 
+
+
     /**
      * Reads all remaining tokens from this input stream, parses them as doubles, and
      * returns them as an array of doubles
@@ -539,6 +541,17 @@ public final class In {
     public static int[] readInts() {
         return new In().readAllInts();
     }
+
+//    public static int[] readInts(String name){
+//        In in = new In(name);
+//        String input = in.readAll();
+//        String[] words = input.split("\\s+");
+//        int[] ints = new int[words.length];
+//        for(int i = 0; i < words.length; i ++){
+//            ints[i] = Integer.parseInt(words[i]);
+//        }
+//        return ints;
+//    }
 
     /**
      * Reads all doubles from standard input and returns them as

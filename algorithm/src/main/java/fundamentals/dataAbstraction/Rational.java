@@ -77,6 +77,8 @@ public class Rational implements Comparable<Rational> {
      */
 
     public static Rational mediant(Rational left, Rational right){
+        assert left.num+right.num > Long.MAX_VALUE || left.den+right.den > Long.MAX_VALUE : "Long value overflow";
+        assert left.num+right.num < Long.MIN_VALUE || left.den+right.den < Long.MIN_VALUE : "Long value underflow";
         return new Rational(left.num + right.num, left.den + right.den);
     }
 
@@ -203,7 +205,9 @@ public class Rational implements Comparable<Rational> {
      */
     @Override
     public int compareTo(Rational that) {
+        assert this.num*that.den > Long.MAX_VALUE : "Long value overflow";
        long left = this.num * that.den;
+        assert this.num*that.den > Long.MAX_VALUE : "Long value overflow";
        long right = that.num * this.den;
 
        if(left < right) return -1;
