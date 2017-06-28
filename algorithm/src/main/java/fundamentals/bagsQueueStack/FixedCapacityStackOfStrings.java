@@ -33,6 +33,7 @@ public class FixedCapacityStackOfStrings implements Iterable<String>{
 
     public FixedCapacityStackOfStrings(int capacity){
             a = new String[capacity];
+            N = 0;
     }
 
     public boolean isEmpty(){
