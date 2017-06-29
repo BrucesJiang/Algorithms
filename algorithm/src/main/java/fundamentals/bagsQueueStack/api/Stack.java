@@ -14,6 +14,8 @@ import util.api.StdIn;
 import util.api.StdOut;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * The {@code Stack} class represents a last-in-first-out (LIFO) stack of generic items.
  * It supports the usual <em>push</em>， <em>pop</em> operations, along with methods for peek
@@ -28,7 +30,7 @@ import java.util.Iterator;
  * @auther Bruce Jiang
  */
 public class Stack<I> implements Iterable<I>{
-    private Node first; //top of the stack
+    private Node<I> first; //top of the stack
     private int size; // number of items in the stack
 
     private static class Node<I>{
@@ -73,18 +75,19 @@ public class Stack<I> implements Iterable<I>{
      * @param item the item
      */
     public void push(I item){
-        Node node = new Node(item, first);
+        Node<I> node = new Node<I>(item, first);
         first = node;
         size ++;
     }
 
     /**
      * Returns and removes the item on the top of stack
-     * or {@code null} if the stack is empty
+     *
      * @return the item on the top of stack
-     *          return {@code null} if the stack is empty
+     * @throws NoSuchElementException if the stack is empty
      */
     public I pop(){
+        if(isEmpty()) throw new NoSuchElementException("The stack is empty");
         Node node = first;
         first = node.next;
         size --;
@@ -93,14 +96,13 @@ public class Stack<I> implements Iterable<I>{
 
     /**
      * Returns the item on the top of the stack
-     * or return {@code null} if the stack is empty
      *
      * @return the item on the top of the stack
-     *    {@code null} if the stack is empty
+     * @throws NoSuchElementException if the stack is empty
      */
     public I peek(){
-        if(isEmpty()) return null;
-        else return (I)first.item;
+        if(isEmpty()) throw new NoSuchElementException("The stack is underflow");
+        return (I)first.item;
     }
 
     @Override
@@ -109,7 +111,7 @@ public class Stack<I> implements Iterable<I>{
     }
 
     private class ListIterator implements Iterator<I>{
-        private Node current = first;
+        private Node<I> current = first;
         @Override
         public boolean hasNext() {
             return current != null;
@@ -117,7 +119,7 @@ public class Stack<I> implements Iterable<I>{
 
         @Override
         public I next() {
-            I item = (I)current.item;
+            I item = current.item;
             current = current.next;
             return item;
         }
