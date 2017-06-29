@@ -1,8 +1,13 @@
  package fundamentals.bagsQueueStack;
 
-import java.util.Iterator;
+import util.api.StdIn;
+import util.api.StdOut;
 
-/**
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+ /**
  * The {@code ResizingArrayQueue} class represents a first-in-first-out (FIFO) queue of generic items.
  *
  * It supports the usual <em>enqueue</em> and <em>dequeue</em> operations, along with methods for peeking
@@ -47,50 +52,90 @@ public class ResizingArrayQueue<I> implements Iterable<I> {
      * @return the number of items in the queue
      */
     public int size(){
-        //TODO
-        return -1;
+        return size;
     }
 
+    /**
+     * Returns the the first item in the queue
+     *
+     * @return the first item
+     * @throws NoSuchElementException if the queue is empty
+     */
     public I peek(){
-        //TODO
-        return null;
+        if(isEmpty()) throw new NoSuchElementException("Queue is empty");
+        return array[first];
     }
 
+    /**
+     * Returns and remove the first item in the queue
+     *
+     * @return the first item in the queue
+     * @throws NoSuchElementException if the queue is empty
+     */
     public I pop(){
-        //TODO
-        return null;
+        if(isEmpty()) throw new NoSuchElementException("Queue is empty");
+        I item = array[first];
+        array[first++] = null;
+        --size;
+        return item;
     }
 
+     /**
+      * Add an item into the queue
+      *
+      * @param item the item
+      */
     public void enqueue(I item){
-        //TODO
+        if(size == array.length) ensureCapacity(array.length * 2);
+        array[last++] = item;
+        if(last == array.length) last = 0; //wrap-around
+        size ++;
     }
 
-    public I dequeue(){
-        //TODO
-        return null;
-    }
+     /**
+      * Removes and returns the item on this queue that was least recently added.
+      * @return the item on this queue that was least recently added
+      * @throws NoSuchElementException if this queue is empty
+      */
+     public I dequeue() {
+         if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+         I item = array[first];
+         array[first] = null;                            // to avoid loitering
+         size--;
+         first++;
+         if (first == array.length) first = 0;           // wrap-around
+         // shrink size of array if necessary
+         if (size > 0 && size == array.length/4) ensureCapacity(array.length/2);
+         return item;
+     }
 
     @Override
     public Iterator<I> iterator() {
-        return new ReverseArrayQueue<>();
+        return new ReverseArrayQueue();
     }
 
+    //resize the underlying array
     private void ensureCapacity(int newCapacity){
-        //TODO
+        assert newCapacity >= size;
+        Arrays.copyOf(array, newCapacity);
+        first = 0;
+        last = size;
     }
 
-    private class ReverseArrayQueue<I> implements Iterator<I>{
+    private class ReverseArrayQueue implements Iterator<I>{
 
+        private int n = 0;
         @Override
         public boolean hasNext() {
-            //TODO
-            return false;
+            return n < size;
         }
 
         @Override
         public I next() {
-            //TODO
-            return null;
+            if(!hasNext()) throw new NoSuchElementException("The Queue is empty");
+            I item = array[(n + first) % array.length];
+            n ++;
+            return item;
         }
 
         @Override
@@ -105,6 +150,12 @@ public class ResizingArrayQueue<I> implements Iterable<I> {
      * @param args the command-line arguments
      */
     public static void main(String[] args){
-        //TODO
+        ResizingArrayQueue<String> queue = new ResizingArrayQueue<String>();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-")) queue.enqueue(item);
+            else if (!queue.isEmpty()) StdOut.print(queue.dequeue() + " ");
+        }
+        StdOut.println("(" + queue.size() + " left on queue)");
     }
 }
