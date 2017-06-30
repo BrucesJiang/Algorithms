@@ -105,6 +105,19 @@ public class Stack<I> implements Iterable<I>{
         return (I)first.item;
     }
 
+    /**
+     * Returns a string represents of the stack
+     *
+     * @return a string represents of the stack, separated by space
+     */
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(I item : this){
+            sb.append(item + " ");
+        }
+        return sb.toString();
+    }
+
     @Override
     public Iterator<I> iterator() {
         return new ListIterator();
