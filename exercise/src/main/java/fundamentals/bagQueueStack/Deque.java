@@ -1,6 +1,9 @@
 package fundamentals.bagQueueStack;
 
 
+import util.api.StdIn;
+import util.api.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -157,6 +160,29 @@ public class Deque<I> implements Iterable<I>{
      * @param args the command-line argss
      */
     public static void main(String[] args){
+        Deque<String> dq = new Deque<String>();
 
+
+        while(!StdIn.isEmpty()){
+            String str = StdIn.readString();
+            if(str.matches("[+ - * /]")){
+                dq.pushLeft(str);
+                StdOut.println(dq.peekLeft());
+            }else if(str.equals("-")){
+                dq.pushRight(str);
+                StdOut.println(dq.peekRight());
+            }else if(str.matches("[1-9]")){
+                dq.pushRight(str);
+                StdOut.println(dq.popLeft());
+            }else{
+                /**
+                 * 这里有个Bug: 如果首先执行这里，182行会报错，最根本的原因是 115行，继续追溯
+                 *  会发现自己在数据结构的处理失误， 新增的额外空间点初始加入的时候，head和 tail
+                 *  指针有问题
+                 */
+                dq.pushLeft(str);
+                StdOut.println(dq.popRight());
+            }
+        }
     }
 }
