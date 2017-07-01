@@ -1,3 +1,15 @@
+/**************************************************
+ * Compilation:   javac Deque.java
+ * Execution:     java Deque
+ * Dependencies:  StdOut.java StdIn.java
+ *
+ * % java Deque < input.txt
+ * Input:
+ *  a * b - c + a 1 2 3 4 5 f v f s * d
+ * Output:
+ *  a**null-+ba+c1254fs**
+ **************************************************/
+
 package fundamentals.bagQueueStack;
 
 
@@ -30,8 +42,10 @@ public class Deque<I> implements Iterable<I>{
      * Initializes an empty Deque
      */
     public Deque(){
-        Node<I> node = new Node<I>(null, null, null);
-        head = tail = node;
+        head = new Node<I>(null, null, null);
+        tail = new Node<I>(null, null, null);
+        tail.prev = head;
+        head.next = tail;
         size = 0;
     }
 
@@ -61,6 +75,7 @@ public class Deque<I> implements Iterable<I>{
      */
     public void pushLeft(I item){
         Node<I> node = new Node<I>(item, head, head.next);
+        head.next.prev = node;
         head.next = node;
         size++;
     }
@@ -71,9 +86,9 @@ public class Deque<I> implements Iterable<I>{
      * @param item the item to be added
      */
     public void pushRight(I item){
-        Node<I> node = new Node<I>(item, tail, null);
-        tail.next = node;
-        tail = node;
+        Node<I> node = new Node<I>(item, tail.prev, tail);
+        tail.prev.next = node;
+        tail.prev = node;
         size ++;
     }
 
@@ -111,9 +126,9 @@ public class Deque<I> implements Iterable<I>{
      */
     public I popRight(){
         if(isEmpty()) throw new NoSuchElementException("Deque underflow");
-        I item = tail.item;
-        tail.prev.next = null;
-        tail = tail.prev;
+        I item = tail.prev.item;
+        tail.prev = tail.prev.prev;
+        tail.prev.next = tail;
         return item;
     }
 
@@ -129,23 +144,26 @@ public class Deque<I> implements Iterable<I>{
     }
 
     public Iterator<I> iterator() {
-        return new ListInterator<I>(head.next);
+        return new ListInterator<I>(head.next, size);
     }
 
     private class ListInterator<I> implements Iterator<I>{
         private Node<I> currrent;
-        public ListInterator(Node<I> current){
+        private int N;
+        public ListInterator(Node<I> current, int N){
             this.currrent = current;
+            this.N = N;
         }
 
         public boolean hasNext() {
-            return currrent == null;
+            return N >= 0;
         }
 
         public I next() {
             if(!hasNext()) throw new NoSuchElementException("Deque underflow");
             I item = currrent.item;
             currrent = currrent.next;
+            N--;
             return item;
         }
 
@@ -167,13 +185,13 @@ public class Deque<I> implements Iterable<I>{
             String str = StdIn.readString();
             if(str.matches("[+ - * /]")){
                 dq.pushLeft(str);
-                StdOut.println(dq.peekLeft());
+                StdOut.print(dq.peekLeft());
             }else if(str.equals("-")){
                 dq.pushRight(str);
-                StdOut.println(dq.peekRight());
+                StdOut.print(dq.peekRight());
             }else if(str.matches("[1-9]")){
                 dq.pushRight(str);
-                StdOut.println(dq.popLeft());
+                StdOut.print(dq.popLeft());
             }else{
                 /**
                  * 这里有个Bug: 如果首先执行这里，182行会报错，最根本的原因是 115行，继续追溯
@@ -181,7 +199,7 @@ public class Deque<I> implements Iterable<I>{
                  *  指针有问题
                  */
                 dq.pushLeft(str);
-                StdOut.println(dq.popRight());
+                StdOut.print(dq.popRight());
             }
         }
     }
