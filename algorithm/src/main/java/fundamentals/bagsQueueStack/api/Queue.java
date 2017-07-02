@@ -44,7 +44,7 @@ public class Queue<I> implements Iterable<I> {
      *          {@code false} otherwise
      */
     public boolean isEmpty(){
-        return size() == 0;
+        return first == null;
     }
 
     /**
@@ -62,8 +62,10 @@ public class Queue<I> implements Iterable<I> {
      * @param item the item to add
      */
     public void enqueue(I item){
-        Node<I> node = new Node<I>(item, null);
-        last = node;
+        Node<I> oldlast = last;
+        last = new Node<I>(item, null);
+        if (isEmpty()) first = last;
+        else           oldlast.next = last;
         size++;
     }
 
