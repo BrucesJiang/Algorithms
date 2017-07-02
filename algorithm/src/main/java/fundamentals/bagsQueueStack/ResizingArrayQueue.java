@@ -117,7 +117,7 @@ public class ResizingArrayQueue<I> implements Iterable<I> {
     //resize the underlying array
     private void ensureCapacity(int newCapacity){
         assert newCapacity >= size;
-        Arrays.copyOf(array, newCapacity);
+        this.array = Arrays.copyOf(array, newCapacity);
         first = 0;
         last = size;
     }
