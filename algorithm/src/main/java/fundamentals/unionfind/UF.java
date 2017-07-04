@@ -161,7 +161,7 @@ public class UF {
     public int find(int p){
         validate(p);
         while(p != parent[p]){
-            parent[p] = parent[parent[p]];
+            parent[p] = parent[parent[p]]; // path compression by halving
             p = parent[p];
         }
         return p;
