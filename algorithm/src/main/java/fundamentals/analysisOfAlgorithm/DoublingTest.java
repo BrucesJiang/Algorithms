@@ -1,17 +1,21 @@
 package fundamentals.analysisOfAlgorithm;
 
+import util.api.StdOut;
+import util.api.StdRandom;
+
 /*************************************************************************
  *  Compilation:  javac DoublingTest.java
  *  Execution:    java DoublingTest
  *  Dependencies: ThreeSum.java Stopwatch.java StdRandom.java StdOut.java
  *
  *  % java DoublingTest 
- *      512 6.48
- *     1024 8.30
- *     2048 7.75
- *     4096 8.00
- *     8192 8.05
- *   ... 
+ *        250   0.0
+ *        500   0.1
+ *       1000   0.2
+ *       2000   0.6
+ *       4000   3.3
+ *       8000  26.2
+ *       ...
  *
  *************************************************************************/
 
