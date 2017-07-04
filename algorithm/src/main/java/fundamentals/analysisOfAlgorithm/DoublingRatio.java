@@ -1,9 +1,13 @@
 package fundamentals.analysisOfAlgorithm;
 
+import util.api.StdOut;
+import util.api.StdRandom;
+
 /*************************************************************************
- *  Compilation:  javac DoublingTest.java
- *  Execution:    java DoublingTest
+ *  Compilation:  javac DoublingRatio.java
+ *  Execution:    java DoublingRatio
  *  Dependencies: ThreeSum.java Stopwatch.java StdRandom.java StdOut.java
+ *
  *
  *  % java DoublingTest 
  *      512 6.48
@@ -15,7 +19,7 @@ package fundamentals.analysisOfAlgorithm;
  *
  *************************************************************************/
 
-public class DoublingTest {
+public class DoublingRatio {
 
     public static double timeTrial(int N) {
         int MAX = 1000000;
@@ -30,9 +34,11 @@ public class DoublingTest {
 
 
     public static void main(String[] args) { 
+        double prev = timeTrial(125);
         for (int N = 250; true; N += N) {
             double time = timeTrial(N);
-            StdOut.printf("%7d %5.1f\n", N, time);
+            StdOut.printf("%6d %7.1f %5.1f\n", N, time, time/prev);
+            prev = time;
         } 
     } 
 } 
