@@ -26,63 +26,156 @@ package fundamentals.unionfind;
 import util.api.In;
 import util.api.Out;
 
-
 /**
+ *  The {@code UF} class represents a <em>union–find data type</em>
+ *  (also known as the <em>disjoint-sets data type</em>).
+ *  It supports the <em>union</em> and <em>find</em> operations,
+ *  along with a <em>connected</em> operation for determining whether
+ *  two sites are in the same component and a <em>count</em> operation that
+ *  returns the total number of components.
+ *  <p>
+ *  The union–find data type models connectivity among a set of <em>n</em>
+ *  sites, named 0 through <em>n</em>–1.
+ *  The <em>is-connected-to</em> relation must be an
+ *  <em>equivalence relation</em>:
+ *  <ul>
+ *  <li> <em>Reflexive</em>: <em>p</em> is connected to <em>p</em>.
+ *  <li> <em>Symmetric</em>: If <em>p</em> is connected to <em>q</em>,
+ *       then <em>q</em> is connected to <em>p</em>.
+ *  <li> <em>Transitive</em>: If <em>p</em> is connected to <em>q</em>
+ *       and <em>q</em> is connected to <em>r</em>, then
+ *       <em>p</em> is connected to <em>r</em>.
+ *  </ul>
+ *  <p>
+ *  An equivalence relation partitions the sites into
+ *  <em>equivalence classes</em> (or <em>components</em>). In this case,
+ *  two sites are in the same component if and only if they are connected.
+ *  Both sites and components are identified with integers between 0 and
+ *  <em>n</em>–1.
+ *  Initially, there are <em>n</em> components, with each site in its
+ *  own component.  The <em>component identifier</em> of a component
+ *  (also known as the <em>root</em>, <em>canonical element</em>, <em>leader</em>,
+ *  or <em>set representative</em>) is one of the sites in the component:
+ *  two sites have the same component identifier if and only if they are
+ *  in the same component.
+ *  <ul>
+ *  <li><em>union</em>(<em>p</em>, <em>q</em>) adds a
+ *      connection between the two sites <em>p</em> and <em>q</em>.
+ *      If <em>p</em> and <em>q</em> are in different components,
+ *      then it replaces
+ *      these two components with a new component that is the union of
+ *      the two.
+ *  <li><em>find</em>(<em>p</em>) returns the component
+ *      identifier of the component containing <em>p</em>.
+ *  <li><em>connected</em>(<em>p</em>, <em>q</em>)
+ *      returns true if both <em>p</em> and <em>q</em>
+ *      are in the same component, and false otherwise.
+ *  <li><em>count</em>() returns the number of components.
+ *  </ul>
+ *  <p>
+ *  The component identifier of a component can change
+ *  only when the component itself changes during a call to
+ *  <em>union</em>—it cannot change during a call
+ *  to <em>find</em>, <em>connected</em>, or <em>count</em>.
+ *  <p>
+ *  This implementation uses weighted quick union by rank with path compression
+ *  by halving.
+ *  Initializing a data structure with <em>n</em> sites takes linear time.
+ *  Afterwards, the <em>union</em>, <em>find</em>, and <em>connected</em>
+ *  operations take logarithmic time (in the worst case) and the
+ *  <em>count</em> operation takes constant time.
+ *  Moreover, the amortized time per <em>union</em>, <em>find</em>,
+ *  and <em>connected</em> operation has inverse Ackermann complexity.
+ *  For alternate implementations of the same API, see
+ *  {@link QuickUnionUF}, {@link QuickFindUF}, and {@link WeightedQuickUnionUF}.
  *
+ *  <p>
+ *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/15uf">Section 1.5</a> of
+ *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  * @auther Bruce Jiang
  */
 public class UF {
-    private int[] id; // id
+    //private int[] id; // id
+    private int[] parent; // parent[i] = parent of i
+    private byte[] rank; // rank[i] = rank of subtree rooted at i
     private int count; // number of components
 
     /**
-     * Initializes N sites with integer names (0 to N-1)
+     * Initializes an empty union-find data type with {@code N} sites
+     * {@code 0} to {@code N-1}. Each site is initially in its own component
      *
      * @param N number of sites
+     * @throws IllegalArgumentException if {@code N < 0}
      */
     public UF(int N){
+        if(N < 0) throw new IllegalArgumentException("Inalid Parameter");
         count = N;
-        id = new int[N];
+        parent = new int[N];
+        rank = new byte[N];
         for(int i = 0; i < N; i ++){
-            id[i] = i;
+            parent[i] = i;
+            rank[i] = 0;
         }
+//        id = new int[N];
+//        for(int i = 0; i < N; i ++){
+//            id[i] = i;
+//        }
     }
 
     /**
-     * Add connection between endpoint q and endpoint p
+     * Merges the component containing site {@code p} and site {@code q} with the
+     * component containing site {@code q}.
      *
-     * @param p the endpoint
-     * @param q the other endpoint
+     * @param p the integer representing one site
+     * @param q the integer representing the other site
+     * @throws IndexOutOfBoundsException unless both {@code 0 <= p < N} and {@code 0 <= q < N}
      */
     public void union(int p, int q){
-        int pId = find(p);
-        int qId = find(q);
 
-        if(pId == qId) return;
-        for(int i = 0; i < id.length; i ++){
-            if(id[i] == pId) id[i] = qId;
+        int pRoot = find(p);
+        int qRoot = find(q);
+
+        if(pRoot == qRoot) return;
+
+        //make root of samller rank point to root of larger rank
+        if        (rank[pRoot] < rank[qRoot]) parent[pRoot] = qRoot;
+        else if   (rank[pRoot] > rank[qRoot]) parent[qRoot] = pRoot;
+        else {
+            parent[qRoot] = pRoot;
+            rank[pRoot] ++;
         }
+//        for(int i = 0; i < id.length; i ++){
+//            if(id[i] == pId) id[i] = qId;
+//        }
         count --;
     }
 
     /**
-     *  Component identifier for p (0 to N-1)
+     * Returns the component identifier for the component containing size {@code p}
      *
-     * @param p the endpoint
-     * @return component identifier for p
+     * @param p the integer representing one site
+     * @return the component identifier for the component containing size {@code p}
+     * @throws IndexOutOfBoundsException unless {@code 0 <= p < n}
      */
     public int find(int p){
-        return id[p];
+        validate(p);
+        while(p != parent[p]){
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
+        //return id[p];
     }
 
     /**
      *  Returns whether endpoint p and endpoint q are in the same component or not
      *
-     * @param p the endpoint
-     * @param q the endpoint
-     * @return {@code true} if endpoint {@code p} and endpoint {@code q} in the same component
+     * @param p the integer representing one site
+     * @param q the integer representing the other site
+     * @return {@code true} if two sites {@code p} and {@code q} in the same component
      *          {@code false} otherwise
+     * @throws IndexOutOfBoundsException unless both {@code 0 <= p < N} and {@code 0 <= q < N}
      */
     public boolean connected(int p, int q){
         return find(p) == find(q);
@@ -91,12 +184,19 @@ public class UF {
     /**
      * Returns number of components
      *
-     * @return number of components
+     * @return number of components (between {@code 1} and {@code N}
      */
     public int count(){
         return count;
     }
 
+    // validate the p is a valid index
+    private void validate(int p){
+        int n = parent.length;
+        if(p < 0 || p >= n){
+            throw new IndexOutOfBoundsException("index " + p + " is not between 0 and " + (n-1));
+        }
+    }
 
     /**
      * Unit test the {@code UF} data type
