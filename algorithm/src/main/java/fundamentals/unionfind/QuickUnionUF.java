@@ -83,6 +83,9 @@ public class QuickUnionUF{
      */
     public QuickUnionUF(int N){
         this.parent = new int[N];
+        for(int i = 0; i < N; i ++){
+            this.parent[i] = i;
+        }
         this.count = N;
     }
 
@@ -92,7 +95,7 @@ public class QuickUnionUF{
      * @return the number of components (between {@code 1} and {@code n})
      */
     public int count(){
-        return -1;
+        return count;
     }
 
     /**
@@ -103,7 +106,11 @@ public class QuickUnionUF{
      * @throws IndexOutOfBoundsException unless {@code 0 <= p < n}
      */
     public int find(int p){
-        return -1;
+        validate(p);
+        while(p != parent[p]){
+            p = parent[p];
+        }
+        return p;
     }
 
 
@@ -118,7 +125,9 @@ public class QuickUnionUF{
      *         both {@code 0 <= p < n} and {@code 0 <= q < n}
      */
     public boolean connected(int p, int q) {
-        return false;
+        validate(p);
+        validate(q);
+        return find(p) == find(q);
     }
 
 
@@ -132,12 +141,23 @@ public class QuickUnionUF{
      *         both {@code 0 <= p < n} and {@code 0 <= q < n}
      */
     public void union(int p, int q) {
+        validate(p);
+        validate(q);
+        int rootP = find(p);
+        int rootQ = find(q);
 
+        if(rootQ == rootP) return ;
+
+        if        (rootP > rootQ) parent[rootQ] = rootP;
+        else if   (rootP <= rootQ) parent[rootP] = rootQ;
+        count --;
     }
 
     // validate that p is a valid index
     private void validate(int p){
-
+        if(p < 0 || p > parent.length){
+            throw new IllegalArgumentException("Argument is not valid");
+        }
     }
 
     /**
