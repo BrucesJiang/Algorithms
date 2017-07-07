@@ -81,8 +81,8 @@ public class QuickUnionPathCompressionUF {
     public int find(int idx){
         validate(idx);
         int root = idx;
-        while(root != find(root)){
-            root = find(root);
+        while(root != parent[root]){
+            root = parent[root];
         }
         while(idx != root){ //路径折叠法
             int tmp = parent[idx];

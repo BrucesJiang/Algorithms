@@ -45,7 +45,7 @@ public class WeightedQuickUnionPathCompressionUF {
         this.size = new int[N];
         for(int i = 0; i < N; i ++){
             parent[i] = i;
-            size[i] = 0;
+            size[i] = 1;
         }
     }
 
@@ -55,7 +55,7 @@ public class WeightedQuickUnionPathCompressionUF {
      * @return the number of the components
      */
     public int count(){
-        return this.count;
+        return count;
     }
 
     /**
@@ -66,8 +66,9 @@ public class WeightedQuickUnionPathCompressionUF {
      * @throws IllegalArgumentException unless {@code 0 <= idx < N }
      */
     public int find(int idx){
+        validate(idx);
         int root = idx;
-        while(root != find(idx)) root = find(root);
+        while(root != parent[root]) root = parent[root];
         while(root != idx){
             int tmp = parent[idx];
             parent[idx] = root;
@@ -98,6 +99,8 @@ public class WeightedQuickUnionPathCompressionUF {
      *         both {@code 0 <= p < n} and {@code 0 <= q < n}
      */
     public void union(int p, int q){
+        validate(p);
+        validate(q);
         int rootP = find(p);
         int rootQ = find(q);
 
@@ -112,10 +115,14 @@ public class WeightedQuickUnionPathCompressionUF {
             this.parent[rootQ] = rootP;
             this.size[rootP] += this.size[rootQ];
         }
-        count ++;
+        count --;
     }
 
 
+    private void validate(int idx){
+        if(idx < 0 || idx > parent.length)
+            throw new IllegalArgumentException("Argument is not valid");
+    }
     /**
      * Unit test the {@code WeightedQuickUnionPathCompressionUF} data structure
      *
@@ -131,7 +138,7 @@ public class WeightedQuickUnionPathCompressionUF {
             int p = in.readInt();
             int q = in.readInt();
 
-            if(wq.connected(p, q)) return;
+            if(wq.connected(p, q)) continue;
             wq.union(p, q);
             out.println(p + " " + q);
         }

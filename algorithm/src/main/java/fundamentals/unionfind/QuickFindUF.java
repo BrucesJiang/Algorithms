@@ -73,7 +73,9 @@ import util.api.Out;
 public class QuickFindUF {
     private int[] id;    // id[i] = component identifier of i
     private int count;   // number of components
-
+    private int findSum;
+    private int connectedSum;
+    private int unionSum;
     /**
      * Initializes an empty union–find data structure with {@code n} sites
      * {@code 0} through {@code n-1}. Each site is initially in its own
@@ -84,6 +86,9 @@ public class QuickFindUF {
      */
     public QuickFindUF(int n) {
         count = n;
+        this.findSum = 0;
+        this.connectedSum = 0;
+        this.unionSum = 0;
         id = new int[n];
         for (int i = 0; i < n; i++)
             id[i] = i;
@@ -107,7 +112,7 @@ public class QuickFindUF {
      */
     public int find(int p) {
         validate(p);
-        return id[p];
+         return id[p];
     }
 
     // validate that p is a valid index
