@@ -73,9 +73,9 @@ import util.api.Out;
 public class QuickFindUF {
     private int[] id;    // id[i] = component identifier of i
     private int count;   // number of components
-    private int findSum;
-    private int connectedSum;
-    private int unionSum;
+    int findSum;
+    int connectedSum;
+    int unionSum;
     /**
      * Initializes an empty union–find data structure with {@code n} sites
      * {@code 0} through {@code n-1}. Each site is initially in its own
@@ -157,8 +157,12 @@ public class QuickFindUF {
         // p and q are already in the same component
         if (pID == qID) return;
 
-        for (int i = 0; i < id.length; i++)
-            if (id[i] == pID) id[i] = qID;
+        for (int i = 0; i < id.length; i++) {
+            if (id[i] == pID){
+                id[i] = qID;
+            }
+            this.unionSum ++;
+        }
         count--;
     }
 
@@ -181,6 +185,7 @@ public class QuickFindUF {
             int q = in.readInt();
             if (uf.connected(p, q)) continue;
             uf.union(p, q);
+            //out.println("Union  = " + uf.unionSum);
             out.println(p + " " + q);
         }
         out.println(uf.count() + " components");
