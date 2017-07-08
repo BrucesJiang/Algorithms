@@ -1,11 +1,11 @@
 /******************************************************************************
  *  Compilation:  javac Selection.java
  *  Execution:    java  Selection < input.txt
- *  Dependencies: StdOut.java StdIn.java
+ *  Dependencies: In.java SortTools.java
  *  Data files:   http://algs4.cs.princeton.edu/21elementary/tiny.txt
  *                http://algs4.cs.princeton.edu/21elementary/words3.txt
  *
- *  Sorts a sequence of strings from standard input using selection sort.
+ *  Sorts a sequence of strings from file input using selection sort.
  */
 package sorting.elementarySorting;
 
@@ -64,7 +64,7 @@ public final class Selection{
     }
 
     /**
-     * Reads in a sequence of strings from standard input; selection sorts them;
+     * Reads in a sequence of strings from file input; selection sorts them;
      * and prints them to standard output in ascending order.
      *
      * @param args the command-line arguments
