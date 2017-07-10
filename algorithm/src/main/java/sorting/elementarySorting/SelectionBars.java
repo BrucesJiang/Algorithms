@@ -1,6 +1,16 @@
+/******************************************************************************
+ *  Compilation:  javac SelectionBars.java
+ *  Execution:    java SelectionBars N
+ *  Dependencies: StdDraw.java
+ *
+ *  Selection sort n random real numbers between 0 and 1, visualizing
+ *  the results by ploting bars with heights proportional to the values.
+ *
+ *  % java InsertionBars 20
+ *
+ ******************************************************************************/
 package sorting.elementarySorting;
 
-import sorting.SortTools;
 import util.api.StdDraw;
 import util.api.StdRandom;
 
