@@ -35,6 +35,13 @@ public class SortTools {
         a[j] = swap;
     }
 
+    // exchange a[i] and a[j]
+    public static void exch(double[] a, int i, int j) {
+        double swap = a[i];
+        a[i] = a[j];
+        a[j] = swap;
+    }
+
     public static void show(Comparable[] a){
         for(Comparable tmp : a)
             StdOut.print(tmp + " ");
@@ -66,6 +73,18 @@ public class SortTools {
     public static boolean isSorted(Object[] a, int lo, int hi, Comparator comparator){
         for(int i = lo+1; i < hi; i ++)
             if(less(a[i], a[i-1], comparator)) return false;
+        return true;
+    }
+    public static boolean isSorted(double[] a){
+        for(int i = 1; i < a.length; i ++){
+            if(less(a[i], a[i-1])) return false;
+        }
+        return true;
+    }
+    // is the array a[lo, hi) sorted
+    public static boolean isSorted(double[] a, int lo, int hi){
+        for(int i = lo+1; i < hi; i ++)
+            if(less(a[i], a[i-1])) return false;
         return true;
     }
 }
