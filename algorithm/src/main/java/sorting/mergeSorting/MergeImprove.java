@@ -130,12 +130,17 @@ public class MergeImprove {
         sort(dist, src, lo, mid, comparator);
         sort(dist, src, mid+1, hi, comparator);
 
+        /***
+         * Add a judgement condition, if a[mid] <= a[mid+1], the array is sorted and skips merge method
+         * otherwise, do merge method. We find it don't influence the recursive call but the executable
+         * time of the subarray become a linear.
+         */
         if(!less(src[mid+1], src[mid], comparator)){
+            //native method
             System.arraycopy(src, lo, dist, lo, hi - lo +1);
             return ;
         }
         merge(src, dist, lo, mid, hi, comparator);
-
     }
 
     //sort a[lo .. hi] using insertion sort
