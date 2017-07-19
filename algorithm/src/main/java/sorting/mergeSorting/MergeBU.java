@@ -4,7 +4,7 @@ import util.api.In;
 import util.api.StdOut;
 
 /**
- * The {@code Merge} class provides static methods for sorting an array using bottom-up mergesort.
+ * The {@code Merge} class provides static methods for sorting an array using bottom-up mergeSorting.
  *
  * @auther Bruce Jiang
  */

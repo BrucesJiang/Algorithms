@@ -5,7 +5,7 @@
  *  Data files:   http://algs4.cs.princeton.edu/22mergesort/tiny.txt
  *                http://algs4.cs.princeton.edu/22mergesort/words3.txt
  *
- *  Sorts a sequence of strings from standard input using mergesort.
+ *  Sorts a sequence of strings from standard input using mergeSorting.
  *
  *  % more tiny.txt
  *  S O R T E X A M P L E
@@ -27,7 +27,7 @@ import util.api.In;
 import util.api.StdOut;
 
 /**
- * The {@code Merge} class provides static methods for sorting an array using mergesort.
+ * The {@code Merge} class provides static methods for sorting an array using mergeSorting.
  *
  * @auther Bruce Jiang
  */
@@ -59,7 +59,7 @@ public class Merge {
     }
 
 
-    //mergesort a[lo, hi] using auxiliary array aux[lo ..hi]
+    //mergeSorting a[lo, hi] using auxiliary array aux[lo ..hi]
     private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi){
         if( hi <= lo) return ;
         int mid = lo + (hi - lo)/2;
@@ -79,7 +79,7 @@ public class Merge {
     }
 
     /***************************************************************************
-     *  Index mergesort.
+     *  Index mergeSorting.
      ***************************************************************************/
     // stably merge a[lo .. mid] with a[mid+1 .. hi] using aux[lo .. hi]
     private static void merge(Comparable[] a, int[] index, int[] aux, int lo, int mid, int hi) {
@@ -116,7 +116,7 @@ public class Merge {
         return index;
     }
 
-    // mergesort a[lo..hi] using auxiliary array aux[lo..hi]
+    // mergeSorting a[lo..hi] using auxiliary array aux[lo..hi]
     private static void sort(Comparable[] a, int[] index, int[] aux, int lo, int hi) {
         if (hi <= lo) return;
         int mid = lo + (hi - lo) / 2;

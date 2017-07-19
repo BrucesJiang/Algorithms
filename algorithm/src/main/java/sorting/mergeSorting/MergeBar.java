@@ -9,7 +9,7 @@ import util.api.StdRandom;
  */
 public class MergeBar {
     private final static int CUTOFF = 7;
-    private final static int VERTICAL = 70;
+    private final static int VERTICAL = 20;
 
 
     private static int numberOfRows;
