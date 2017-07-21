@@ -1,3 +1,14 @@
+/******************************************************************************
+ *  Compilation:  javac Quick.java
+ *  Execution:    java Quick < input.txt
+ *  Dependencies: StdOut.java StdIn.java
+ *  Data files:   http://algs4.cs.princeton.edu/23quicksort/tiny.txt
+ *                http://algs4.cs.princeton.edu/23quicksort/words3.txt
+ *
+ *  Sorts a sequence of strings from standard input using quicksort.
+ *
+ ***************************************************/
+
 package sorting.quickSorting;
 
 import util.api.In;
@@ -5,6 +16,9 @@ import util.api.StdOut;
 import util.api.StdRandom;
 
 /**
+ *  The {@code Quick} class provides static methods for sorting an
+ *  array and selecting the ithe smallest element in an array using qiucksort
+ *
  * @auther Bruce Jiang
  */
 public class Quick {
