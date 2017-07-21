@@ -41,24 +41,39 @@ public class Quick {
 
     // part subarray a[lo .. hi]
     private static int partition(Comparable[] a, int lo, int hi){
-        int i = lo, j = hi+1; // left scanner-point and right scanner-point
-        Comparable v = a[lo]; // the scanner-item
+        int i = lo;
+        int j = hi + 1;
+        Comparable v = a[lo];
+        while (true) {
 
-        while(i < j){
-            while(--j > i && less(v, a[j]));
-            if(j > i) a[i] = a[j];
-            while(++i < j && less(a[i], v));
-            if(j > i) a[j] = a[i];
+            // find item on lo to swap
+            while (less(a[++i], v))
+                if (i == hi) break;
+
+            // find item on hi to swap
+            while (less(v, a[--j]))
+                if (j == lo) break;      // redundant since a[lo] acts as sentinel
+
+            // check if pointers cross
+            if (i >= j) break;
+
+            exch(a, i, j);
         }
-        a[i] = v;
-        return i;
+
+        // put partitioning item v at a[j]
+        exch(a, lo, j);
+
+        // now, a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
+        return j;
     }
 
     private static boolean less(Comparable v, Comparable w){
         return v.compareTo(w) < 0;
     }
 
-
+    private static void exch(Comparable[] a, int x, int y){
+        Comparable tmp = a[x]; a[x] = a[y]; a[y] = tmp;
+    }
     private static void show(String[] strs){
         for(String str : strs){
             StdOut.print(str + "\t");
@@ -77,6 +92,10 @@ public class Quick {
         In in = new In(fileName);
 
         String[] strs = in.readAllStrings();
+        for(String str : strs){
+            StdOut.printf("%s\t", str);
+        }
+        StdOut.println();
         Quick.sort(strs); // rearranges them
         show(strs); // show sorted result
     }
