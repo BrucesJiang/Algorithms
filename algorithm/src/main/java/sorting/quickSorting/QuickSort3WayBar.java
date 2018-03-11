@@ -17,7 +17,7 @@ public class QuickSort3WayBar {
         show(a, 0, 0, -1, a.length - 1);
         sort(a, 0, a.length - 1);
         show(a, 0, 0, -1, a.length - 1);
-    }
+    } 
     private static void sort(double[] a, int lo, int hi){
         if(lo == hi) show(a, lo, lo, lo , lo);
         if(lo >= hi) return ;
